@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct Home: View {
     @State private var username:String = ""
@@ -17,7 +18,7 @@ struct Home: View {
                 .resizable()
                 .frame(width: 250, height: 250)
                 .foregroundColor(.accentColor)
-            Text("Beat")
+            Text("BEAT")
                 .font(.custom("1UP!", fixedSize: 50))
                 .foregroundColor(Color(red: 0.66, green: 0.18, blue: 0.29))
             
@@ -29,9 +30,9 @@ struct Home: View {
                     .frame(width: 300, height: 50)
                     .overlay(
                 TextField(
-                    "INSERTNAME",
+                    "INSERT NAME",
                     text: $username)
-                .foregroundColor(.white))
+                .foregroundColor(Color.white))
                 .font(.custom("1UP!", fixedSize: 18))
                 .fontWeight(.bold)
             }
@@ -64,6 +65,7 @@ struct Home: View {
             Spacer()
         }
         .background(Color(red: 255/255, green: 233/255, blue: 175/255))
+        
     }
 }
 
