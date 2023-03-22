@@ -14,37 +14,56 @@ struct Home: View {
         VStack {
             Spacer()
             Image("Group 5-2")
-//                .imageScale(.small)
                 .resizable()
                 .frame(width: 250, height: 250)
                 .foregroundColor(.accentColor)
             Text("Beat")
-                .font(.custom("1UP!", size: 50))
-            Spacer(minLength: 10)
+                .font(.custom("1UP!", fixedSize: 50))
+                .foregroundColor(Color(red: 0.66, green: 0.18, blue: 0.29))
+            
             Button(){
                 print("insert name")
             }   label: {
+                Capsule()
+                    .fill(Color(red: 0.66, green: 0.18, blue: 0.29))
+                    .frame(width: 300, height: 50)
+                    .overlay(
                 TextField(
-                    "Insert Name",
+                    "INSERTNAME",
                     text: $username)
-                    .fontWeight(.bold)
-                    .font(.system(size: 30))
-                    .font(Font.custom("1up", fixedSize: 20))
-                    .background(Color(red: 0.66, green: 0.18, blue: 0.29))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .background{
-//                        Capsule()
-//                        Color(red: 0.66, green: 0.18, blue: 0.29)
-//                    }
+                .foregroundColor(.white))
+                .font(.custom("1UP!", fixedSize: 18))
+                .fontWeight(.bold)
             }
-            Text("Start")
-                .fontWeight(.bold)
-                .font(.system(size: 30))
-            Text("Leaderboard")
-                .fontWeight(.bold)
-                .font(.system(size: 30))
+            Button(){
+                print("start game")
+            } label: {
+                Capsule()
+                    .fill(Color(red: 0.66, green: 0.18, blue: 0.29))
+                    .frame(width: 300, height: 50)
+                    .overlay(
+                        Text("START")
+                                .font(.custom("1UP!", fixedSize: 18))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white))
+            }
+            Button(){
+                print("Leaderboard")
+            } label: {
+                Capsule()
+                    .fill(Color(red: 0.66, green: 0.18, blue: 0.29))
+                    .shadow(color: .gray, radius: 10, x: 0, y: 10)
+//                    .opacity(80)
+                    .frame(width: 300 ,height: 50)
+                    .overlay(
+                        Text("LEADERBOARD")
+                                .font(.custom("1UP!", fixedSize: 18))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white))
+            }
             Spacer()
         }
+        .background(Color(red: 255/255, green: 233/255, blue: 175/255))
     }
 }
 
