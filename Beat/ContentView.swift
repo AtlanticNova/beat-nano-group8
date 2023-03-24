@@ -24,12 +24,12 @@ struct ContentView: View {
     
     var body: some View {
         ZStack{
-            Color(red: 255/255, green: 179/255, blue: 175/255)
+            Color(red: 1.0, green: 0.91, blue: 0.77)
                 .ignoresSafeArea(.all)
             if currentPage == .HomeView {
                 HomeView(
-                    username: $userName
-//                    currentPage: $currentPage
+                    username: $userName,
+                    currentPage: $currentPage
                 )
             } else if currentPage == .MathQuizView {
                 MathQuizView(
