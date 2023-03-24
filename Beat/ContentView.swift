@@ -15,7 +15,18 @@ struct ContentView: View {
     @State private var difficulty = 100
     @State private var score = 0
     
+    @State private var mathQuestion: [Question] = []
+    @State private var generalQuestion: [Question] = []
+//    @State private var locations: [Location] = []
+    
+    
     var body: some View {
+        
+        let _ = readFile(filename: "questionList.json")
+//        let _ = print(mathQuestion, generalQuestion)
+//        let _ = readFile(filename: "questionBank/locations")
+
+
         VStack {
            Text("\(firstNumber) + \(secondNumber) = ...")
                 .font(.custom("1UP!", size: 42))
@@ -78,6 +89,56 @@ struct ContentView: View {
         
         choiceArray = answerList.shuffled()
     }
+    
+//    private func readFile(filename fileName: String) {
+//        print("test readFile()")
+//        if let url = Bundle.main.url(forResource: "locations", withExtension: "json"),
+//           let data = try? Data(contentsOf: url) {
+//          let decoder = JSONDecoder()
+//          if let jsonData = try? decoder.decode(JSONData.self, from: data) {
+//              print(jsonData.locations)
+//              self.locations = jsonData.locations
+//          }
+//        }
+//      }
+    
+    func readFile(filename fileName: String) {
+        print("Test readFile")
+        
+        
+        if let url = Bundle.main.url(forResource: fileName, withExtension: nil),
+        let data = try? Data(contentsOf: url) {
+          let decoder = JSONDecoder()
+          if let jsonData = try? decoder.decode(JSONData.self, from: data) {
+              print(jsonData.math_questions)
+              self.mathQuestion = jsonData.math_questions
+              self.generalQuestion = jsonData.general_questions
+          }
+        }
+    }
+}
+
+struct JSONData: Decodable {
+    let general_questions: [Question]
+    let math_questions: [Question]
+}
+
+struct Question: Decodable, Identifiable {
+    var id: Int
+    var question: String
+    var multipleChoice: [String]
+    var answer: String
+//}
+
+//struct JSONData: Decodable {
+//  let locations: [Location]
+//}
+//
+//struct Location: Decodable, Identifiable {
+//  let id: Int
+//  let name: String
+//  let latitude: Double
+//  let longitude: Double
 }
 
 struct ContentView_Previews: PreviewProvider {
