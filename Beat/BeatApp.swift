@@ -11,7 +11,7 @@ import SwiftUI
 struct BeatApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LeaderboardView()
         }
     }
 }
