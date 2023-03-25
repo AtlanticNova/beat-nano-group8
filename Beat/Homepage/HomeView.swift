@@ -10,7 +10,7 @@ import UIKit
 
 struct HomeView: View {
     @Binding var username: String
-//    @Binding var currentPage: viewPage
+    @Binding var currentPage: viewPage
     
     var body: some View {
         VStack {
@@ -29,17 +29,18 @@ struct HomeView: View {
             .frame(width: 300, height: 50)
             .textFieldStyle(PlainTextFieldStyle())
             .foregroundColor(Color(red: 0.66, green: 0.18, blue: 0.29))
+            .accentColor(Color(red: 0.66, green: 0.18, blue: 0.29))
             .background(.white)
             .font(.custom("1UP!", size: 18))
             .cornerRadius(20)
-            .overlay(RoundedRectangle(cornerRadius: 20)
-                .stroke(Color(red: 0.66, green: 0.18, blue: 0.29))
-                .opacity(20.0)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                .stroke(Color(red: 0.66, green: 0.18, blue: 0.29), lineWidth: 4)
             )
             .padding(.bottom)
             
             Button(){
-//                currentPage = .MathQuizView
+                currentPage = .MathQuizView
             } label: {
                 Capsule()
                     .fill(Color(red: 0.66, green: 0.18, blue: 0.29))
@@ -71,11 +72,11 @@ struct HomeView: View {
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView(
-            username: .constant("")
-//            currentPage: currentPage
-        )
-    }
-}
+//struct SwiftUIView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView(
+//            username: .constant("")
+////            currentPage: currentPage
+//        )
+//    }
+//}

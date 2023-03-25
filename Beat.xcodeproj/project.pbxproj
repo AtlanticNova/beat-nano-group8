@@ -10,6 +10,9 @@
 		3220B82A29CBADB300672CD2 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3220B82929CBADB300672CD2 /* AnswerButton.swift */; };
 		3220B82C29CD733700672CD2 /* MathQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3220B82B29CD733700672CD2 /* MathQuizView.swift */; };
 		3220B83329CD94C800672CD2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3220B83229CD94C800672CD2 /* ContentView.swift */; };
+		3220B83829CE27FC00672CD2 /* TriviaQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3220B83729CE27FC00672CD2 /* TriviaQuizView.swift */; };
+		3220B83B29CE2FD000672CD2 /* ReusableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3220B83A29CE2FD000672CD2 /* ReusableText.swift */; };
+		3220B83E29CE308700672CD2 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3220B83D29CE308700672CD2 /* Quiz.swift */; };
 		32F15A0A29C4802F00D42161 /* BeatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F15A0929C4802F00D42161 /* BeatApp.swift */; };
 		32F15A0E29C4803000D42161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32F15A0D29C4803000D42161 /* Assets.xcassets */; };
 		32F15A1129C4803000D42161 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32F15A1029C4803000D42161 /* Preview Assets.xcassets */; };
@@ -20,6 +23,9 @@
 		3220B82929CBADB300672CD2 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 		3220B82B29CD733700672CD2 /* MathQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathQuizView.swift; sourceTree = "<group>"; };
 		3220B83229CD94C800672CD2 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3220B83729CE27FC00672CD2 /* TriviaQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuizView.swift; sourceTree = "<group>"; };
+		3220B83A29CE2FD000672CD2 /* ReusableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableText.swift; sourceTree = "<group>"; };
+		3220B83D29CE308700672CD2 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		32F15A0629C4802F00D42161 /* Beat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F15A0929C4802F00D42161 /* BeatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatApp.swift; sourceTree = "<group>"; };
 		32F15A0D29C4803000D42161 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +46,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3220B83429CE276300672CD2 /* TriviaQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				3220B83729CE27FC00672CD2 /* TriviaQuizView.swift */,
+			);
+			path = TriviaQuiz;
+			sourceTree = "<group>";
+		};
+		3220B83529CE27A800672CD2 /* MathQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				3220B82B29CD733700672CD2 /* MathQuizView.swift */,
+			);
+			path = MathQuiz;
+			sourceTree = "<group>";
+		};
+		3220B83629CE27D400672CD2 /* Homepage */ = {
+			isa = PBXGroup;
+			children = (
+				A2553F6529C9C4B500FEEE71 /* HomeView.swift */,
+			);
+			path = Homepage;
+			sourceTree = "<group>";
+		};
+		3220B83929CE2F9200672CD2 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				3220B82929CBADB300672CD2 /* AnswerButton.swift */,
+				3220B83A29CE2FD000672CD2 /* ReusableText.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		3220B83C29CE306D00672CD2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3220B83D29CE308700672CD2 /* Quiz.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		32F159FD29C4802F00D42161 = {
 			isa = PBXGroup;
 			children = (
@@ -61,10 +108,12 @@
 			children = (
 				A2553F6929C9C5AF00FEEE71 /* Info.plist */,
 				32F15A0929C4802F00D42161 /* BeatApp.swift */,
-				3220B82B29CD733700672CD2 /* MathQuizView.swift */,
 				3220B83229CD94C800672CD2 /* ContentView.swift */,
-				3220B82929CBADB300672CD2 /* AnswerButton.swift */,
-				A2553F6529C9C4B500FEEE71 /* HomeView.swift */,
+				3220B83629CE27D400672CD2 /* Homepage */,
+				3220B83529CE27A800672CD2 /* MathQuiz */,
+				3220B83429CE276300672CD2 /* TriviaQuiz */,
+				3220B83929CE2F9200672CD2 /* UIComponents */,
+				3220B83C29CE306D00672CD2 /* Model */,
 				32F15A0D29C4803000D42161 /* Assets.xcassets */,
 				32F15A0F29C4803000D42161 /* PreviewContent */,
 			);
@@ -152,6 +201,9 @@
 			files = (
 				3220B82C29CD733700672CD2 /* MathQuizView.swift in Sources */,
 				3220B83329CD94C800672CD2 /* ContentView.swift in Sources */,
+				3220B83B29CE2FD000672CD2 /* ReusableText.swift in Sources */,
+				3220B83829CE27FC00672CD2 /* TriviaQuizView.swift in Sources */,
+				3220B83E29CE308700672CD2 /* Quiz.swift in Sources */,
 				3220B82A29CBADB300672CD2 /* AnswerButton.swift in Sources */,
 				32F15A0A29C4802F00D42161 /* BeatApp.swift in Sources */,
 				A2553F6629C9C4B500FEEE71 /* HomeView.swift in Sources */,
