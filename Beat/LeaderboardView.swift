@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct LeaderboardView: View {
-    let players: [Player] = [
-        Player(name: "John", totalPlay: 10, highScore: 100),
-        Player(name: "Jane", totalPlay: 5, highScore: 200),
-        Player(name: "Bob", totalPlay: 7, highScore: 150),
-        Player(name: "Mary", totalPlay: 12, highScore: 80),
-        Player(name: "Alex", totalPlay: 8, highScore: 120)
+    @State var players: [Player] = [
+//        Player(name: "John", totalPlay: 10, highScore: 100),
+//        Player(name: "Jane", totalPlay: 5, highScore: 200),
+//        Player(name: "Bob", totalPlay: 7, highScore: 150),
+//        Player(name: "Mary", totalPlay: 12, highScore: 80),
+//        Player(name: "Alex", totalPlay: 8, highScore: 120)
     ]
     
     var body: some View {
@@ -24,7 +25,7 @@ struct LeaderboardView: View {
                     .foregroundColor(.yellow)
                     .overlay(Text("Leaderboard")
                         .foregroundColor(.white)
-                        .font(.custom("1up", size: 30))
+                        .font(.custom("1UP!", size: 30))
                     )
             }
             
@@ -52,7 +53,7 @@ struct LeaderboardView: View {
                             Spacer()
                             Text(players[index].name)
                             Spacer()
-                            Text("\(players[index].highScore)")
+                            Text("\(players[index].score)")
                         }
                         .background(.red)
                         .cornerRadius(20)
@@ -64,7 +65,35 @@ struct LeaderboardView: View {
             }
             .background(Color(UIColor(hex: "A92F4B")))
 
-        }.background(Color(UIColor(hex: "FFE9AF")))
+        }
+        .background(Color(UIColor(hex: "FFE9AF")))
+        .onAppear{
+            fetchLeaderboardData()
+//            insertLeaderboardData()
+            
+            let _ = print(players)
+        }
+    }
+    
+    func fetchLeaderboardData() {
+        let db = Firestore.firestore()
+        
+        db.collection("leaderboard").getDocuments() { (querySnapshot, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            let data = document.data()
+                            let id = document.documentID
+                            let name = data["name"] as? String ?? ""
+                            let score = data["score"] as? Int ?? 0
+                            
+//                            let newItem = Item(id: id, name: name)
+                            let newItem = Player(id: id, name: name, score: score)
+                            self.players.append(newItem)
+                        }
+                    }
+        }
     }
 }
 
@@ -87,10 +116,9 @@ extension UIColor {
 }
 
 struct Player: Identifiable {
-    let id = UUID()
-    let name: String
-    var totalPlay: Int
-    var highScore: Int
+    var id: String
+    var name: String
+    var score: Int
 }
 
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct ContentView: View {
     @State private var correctAnswer = 0
@@ -15,17 +16,14 @@ struct ContentView: View {
     @State private var difficulty = 100
     @State private var score = 0
     
-    @State private var mathQuestion: [Question] = []
-    @State private var generalQuestion: [Question] = []
+    @State var mathQuestion: [Question] = []
+    @State var generalQuestion: [Question] = []
+    @State var pictureQuestion: [Question] = []
+    @State var jsonData: JSONData = JSONData(general_questions: [], math_questions: [], picture_questions: [])
 //    @State private var locations: [Location] = []
     
     
     var body: some View {
-        
-        let _ = readFile(filename: "questionList.json")
-//        let _ = print(mathQuestion, generalQuestion)
-//        let _ = readFile(filename: "questionBank/locations")
-
 
         VStack {
            Text("\(firstNumber) + \(secondNumber) = ...")
@@ -60,8 +58,14 @@ struct ContentView: View {
                 .bold()
                 .foregroundColor(Color(red: 0.66, green: 0.16, blue: 0.26))
             
-        }.onAppear(perform: generateAnswer)
+        }
+        .onAppear{
+            self.generateAnswer()
+            self.readFile(filename: "questionList")
+            let _ = print(self.generalQuestion, self.pictureQuestion, self.mathQuestion)
+        }
         .padding()
+        
     }
     
     func answerIsCorrect(answer: Int) {
@@ -90,30 +94,36 @@ struct ContentView: View {
         choiceArray = answerList.shuffled()
     }
     
-//    private func readFile(filename fileName: String) {
-//        print("test readFile()")
-//        if let url = Bundle.main.url(forResource: "locations", withExtension: "json"),
-//           let data = try? Data(contentsOf: url) {
-//          let decoder = JSONDecoder()
-//          if let jsonData = try? decoder.decode(JSONData.self, from: data) {
-//              print(jsonData.locations)
-//              self.locations = jsonData.locations
-//          }
-//        }
-//      }
-    
     func readFile(filename fileName: String) {
-        print("Test readFile")
+        if let url = Bundle.main.url(forResource: fileName, withExtension: "json"){
+            do{
+                let data = try Data(contentsOf: url)
+                let decodedData = try JSONDecoder().decode(JSONData.self, from: data)
+                self.generalQuestion = decodedData.general_questions
+                self.mathQuestion = decodedData.math_questions
+                self.pictureQuestion =
+                decodedData.picture_questions
+            } catch {
+                print("Error decoding JOSN: \(error)")
+            }
+        } else {
+            print("error loading \(fileName) json file")
+        }
+    }
+    
+    func insertLeaderboardData() {
+        let db = Firestore.firestore()
         
-        
-        if let url = Bundle.main.url(forResource: fileName, withExtension: nil),
-        let data = try? Data(contentsOf: url) {
-          let decoder = JSONDecoder()
-          if let jsonData = try? decoder.decode(JSONData.self, from: data) {
-              print(jsonData.math_questions)
-              self.mathQuestion = jsonData.math_questions
-              self.generalQuestion = jsonData.general_questions
-          }
+        var ref: DocumentReference? = nil
+        ref = db.collection("leaderboard").addDocument(data: [
+            "name": "darvin",
+            "score": 1100,
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
         }
     }
 }
@@ -121,6 +131,7 @@ struct ContentView: View {
 struct JSONData: Decodable {
     let general_questions: [Question]
     let math_questions: [Question]
+    let picture_questions: [Question]
 }
 
 struct Question: Decodable, Identifiable {
@@ -128,17 +139,14 @@ struct Question: Decodable, Identifiable {
     var question: String
     var multipleChoice: [String]
     var answer: String
-//}
+}
 
-//struct JSONData: Decodable {
-//  let locations: [Location]
-//}
-//
-//struct Location: Decodable, Identifiable {
-//  let id: Int
-//  let name: String
-//  let latitude: Double
-//  let longitude: Double
+struct picQuestion: Decodable, Identifiable {
+    var id: Int
+    var asset: String
+    var question: String
+    var multipleChoice: [String]
+    var answer: String
 }
 
 struct ContentView_Previews: PreviewProvider {
