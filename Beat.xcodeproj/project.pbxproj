@@ -17,6 +17,7 @@
 		32F15A0E29C4803000D42161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32F15A0D29C4803000D42161 /* Assets.xcassets */; };
 		32F15A1129C4803000D42161 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32F15A1029C4803000D42161 /* Preview Assets.xcassets */; };
 		A2553F6629C9C4B500FEEE71 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2553F6529C9C4B500FEEE71 /* HomeView.swift */; };
+		A27E860629CFF711003B4544 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27E860529CFF711003B4544 /* Leaderboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		A2553F6529C9C4B500FEEE71 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A2553F6929C9C5AF00FEEE71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A2553F6C29C9C76C00FEEE71 /* 1up.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 1up.ttf; path = ../1up.ttf; sourceTree = "<group>"; };
+		A27E860529CFF711003B4544 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		32F15A0829C4802F00D42161 /* Beat */ = {
 			isa = PBXGroup;
 			children = (
+				A27E860429CFF6FB003B4544 /* Leaderboard */,
 				A2553F6929C9C5AF00FEEE71 /* Info.plist */,
 				32F15A0929C4802F00D42161 /* BeatApp.swift */,
 				3220B83229CD94C800672CD2 /* ContentView.swift */,
@@ -127,6 +130,14 @@
 				32F15A1029C4803000D42161 /* Preview Assets.xcassets */,
 			);
 			path = PreviewContent;
+			sourceTree = "<group>";
+		};
+		A27E860429CFF6FB003B4544 /* Leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				A27E860529CFF711003B4544 /* Leaderboard.swift */,
+			);
+			path = Leaderboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +217,7 @@
 				3220B83E29CE308700672CD2 /* Quiz.swift in Sources */,
 				3220B82A29CBADB300672CD2 /* AnswerButton.swift in Sources */,
 				32F15A0A29C4802F00D42161 /* BeatApp.swift in Sources */,
+				A27E860629CFF711003B4544 /* Leaderboard.swift in Sources */,
 				A2553F6629C9C4B500FEEE71 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
