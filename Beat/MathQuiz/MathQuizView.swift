@@ -9,12 +9,14 @@ import SwiftUI
 
 struct MathQuizView: View {
     
-    @Binding var correctAnswer: Int
-    @Binding var choiceArray: [Int]
-    @Binding var firstNumber: Int
-    @Binding var secondNumber: Int
-    @Binding var difficulty: Int
-    @Binding var score: Int
+    @State var correctAnswer: Int
+    @State var choiceArray: [Int]
+    @State var firstNumber: Int
+    @State var secondNumber: Int
+    @State var difficulty: Int
+    @State var score: Int
+    
+    @Binding var username: String
     
     var body: some View {
         VStack {
@@ -29,7 +31,9 @@ struct MathQuizView: View {
                         answerIsCorrect(answer: choiceArray[index])
                         generateAnswer()
                     } label: {
-                        AnswerButton(number: choiceArray[index])
+                        if !choiceArray.isEmpty {
+                            AnswerButton(number: choiceArray[index])
+                        }
                     }
                 }
             }
@@ -40,7 +44,9 @@ struct MathQuizView: View {
                         answerIsCorrect(answer: choiceArray[index])
                         generateAnswer()
                     } label: {
-                        AnswerButton(number: choiceArray[index])
+                        if !choiceArray.isEmpty {
+                            AnswerButton(number: choiceArray[index])
+                        }
                     }
                 }
             }
@@ -71,7 +77,7 @@ struct MathQuizView: View {
         
         correctAnswer = firstNumber + secondNumber
         
-        for i in 0...2 {
+        for _ in 0...2 {
             answerList.append(Int.random(in: 0...difficulty))
         }
         
@@ -84,11 +90,12 @@ struct MathQuizView: View {
 struct MathQuizView_Previews: PreviewProvider {
     static var previews: some View {
         MathQuizView(
-            correctAnswer: .constant(0),
-            choiceArray: .constant([0, 1, 2, 3]),
-            firstNumber: .constant(0),
-            secondNumber: .constant(0),
-            difficulty: .constant(100),
-            score: .constant(0))
+            correctAnswer: 0,
+            choiceArray: [0,1,2,3],
+            firstNumber: 0,
+            secondNumber: 0,
+            difficulty: 100,
+            score: 0,
+            username: .constant("John"))
     }
 }

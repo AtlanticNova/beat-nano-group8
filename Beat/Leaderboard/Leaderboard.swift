@@ -6,16 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct Leaderboard: View {
     
-    let players: [Player] = [
-            Player(name: "Jake", totalPlay: 11, highScore: 90),
-            Player(name: "Jane", totalPlay: 5, highScore: 200),
-            Player(name: "Bob", totalPlay: 7, highScore: 150),
-            Player(name: "Mary", totalPlay: 12, highScore: 80),
-            Player(name: "Alex", totalPlay: 8, highScore: 120)
-        ]
+    @State var players: [Player] = []
     
     var body: some View {
         
@@ -62,10 +57,21 @@ struct Leaderboard: View {
                                     .font(.custom("1UP!", size: 50))
                                     .foregroundColor(.white)
                                     .padding()
-                                Text("winner")
-                                    .font(.custom("1UP!", size: 15))
-                                    .foregroundColor(.white)
-                                    .padding()
+                                if !players.isEmpty {
+                                    Text("\(players[1].name)")
+                                        .font(.custom("1UP!", size: 15))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                    Text("\(players[1].score)")
+                                        .font(.custom("1UP!", size: 15))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                } else {
+                                    Text("Winner")
+                                        .font(.custom("1UP!", size: 15))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                }
                             }
                         }
                     }
@@ -85,10 +91,21 @@ struct Leaderboard: View {
                                     .font(.custom("1UP!", size: 50))
                                     .foregroundColor(.white)
                                     .padding()
-                                Text("winner")
-                                    .font(.custom("1UP!", size: 15))
-                                    .foregroundColor(.white)
-                                    .padding()
+                                if !players.isEmpty{
+                                    Text("\(players[0].name)")
+                                        .font(.custom("1UP!", size: 15))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                    Text("\(players[0].score)")
+                                        .font(.custom("1UP!", size: 15))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                } else {
+                                    Text("Winner")
+                                        .font(.custom("1UP!", size: 15))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                }
                             }
                         }
                     }
@@ -107,14 +124,28 @@ struct Leaderboard: View {
                                     .font(.custom("1UP!", size: 50))
                                     .foregroundColor(.white)
                                     .padding()
-                                Text("winner")
-                                    .font(.custom("1UP!", size: 15))
-                                    .foregroundColor(.white)
-                                    .padding()
+                                if !players.isEmpty {
+                                    Text("\(players[2].name)")
+                                        .font(.custom("1UP!", size: 15))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                    Text("\(players[2].score)")
+                                        .font(.custom("1UP!", size: 15))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                } else {
+                                    Text("Winner")
+                                        .font(.custom("1UP!", size: 15))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                }
                             }
                         }
                     }
                     
+                }.onAppear{
+                    fetchLeaderboardData()
+                    let _ = print(self.players)
                 }
                 
                 
@@ -152,14 +183,12 @@ struct Leaderboard: View {
                                             Spacer()
                                             Text(players[index].name)
                                             Spacer()
-                                            Text("\(players[index].highScore)")
+                                            Text("\(players[index].score)")
                                             Spacer()
                                         }
                                         .font(.custom("1UP!", size: 15))
                                         .foregroundColor(.white)
                                         .padding(5)
-    //                                    .background(.white)
-    //                                    .cornerRadius(30)
                                     }
                                 }
                         }
@@ -176,10 +205,34 @@ struct Leaderboard: View {
                     
                 }
                 
+        }.onAppear{
+//            fetchLeaderboardData()
+        }
+        }
+    
+    func fetchLeaderboardData() {
+        self.players = []
+        let db = Firestore.firestore()
+
+        db.collection("leaderboard").getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let id = document.documentID
+                    let name = data["name"] as? String ?? ""
+                    let score = data["score"] as? Int ?? 0
+
+                    let newItem = Player(id: id, name: name, score: score)
+                    self.players.append(newItem)
+                }
+                self.players = self.players.sorted(by: {$0.score > $1.score})
             }
         }
+        
     }
-
+    }
 
 
 extension UIColor{
@@ -201,15 +254,14 @@ extension UIColor{
 }
 
 struct Player: Identifiable {
-    let id = UUID()
-    let name: String
-    var totalPlay: Int
-    var highScore: Int
+    var id: String
+    var name: String
+    var score: Int
 }
     
-    struct Leaderboard_Previews: PreviewProvider {
-        static var previews: some View {
-            Leaderboard()
-        }
+struct Leaderboard_Previews: PreviewProvider {
+    static var previews: some View {
+    Leaderboard()
     }
+}
 

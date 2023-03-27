@@ -1,0 +1,75 @@
+{
+  "general_questions": [
+    {
+      "id": 1,
+      "question": "Who is the current Indonesia President ?",
+      "multipleChoice": [
+        "Prabowo", "Sandiaga Uno", "Jokowi Dodo", "Megawati"
+      ],
+      "answer": "Jokowi Dodo",
+    },
+    {
+      "id": 2,
+      "question": "What do you call a group of cows playing instruments?",
+      "multipleChoice": [
+        "A Moo-sical", "A Band of Cow", "The Moo-sicians", "A Harmonician"
+      ],
+      "answer": "A Moo-sical",
+    },
+    {
+      "id": 3,
+      "assets": "",
+      "question": "What color do you get when you mix all the colors of the rainbow together?",
+      "multipleChoice": [
+        "Black", "White", "Brown", "Gray"
+      ],
+      "answer": "White",
+    },
+  ],
+  "math_questions": [
+    {
+      "id": 1,
+      "question": "1 + 1 + 2 - 1 - 1 + 2",
+      "multipleChoice": [
+        "1", "4", "2", "3"
+      ],
+      "answer": "4",
+    },
+    {
+      "id": 2,
+      "question": "6(x) + 7 = 31, value of x ?",
+      "multipleChoice": [
+        "3", "4", "5", "6"
+      ],
+      "answer": "4",
+    },
+    {
+      "id": 3,
+      "question": "What is 33 percent of 300",
+      "multipleChoice": [
+        "99", "33", "11", "30"
+      ],
+      "answer": "4",
+    },
+    {
+      "id": 4,
+      "question": "12 x 6 - 20 = ...",
+      "multipleChoice": [
+        "36", "48", "52", "46"
+      ],
+      "answer": "52",
+    }
+  ],
+  "picture_questions": [
+    {
+      "id": 1,
+      "assets": "black_quiz",
+      "question": "Guess The Color !",
+      "multipleChoice": [
+        "Pink", "Greenk", "Black", "Brown"
+      ],
+      "answer": "Black",
+    },
+
+  ],
+}
