@@ -10,6 +10,7 @@ import SwiftUI
 enum viewPage {
     case HomeView
     case MathQuizView
+    case TriviaQuizView
 }
 
 struct ContentView: View {
@@ -40,6 +41,8 @@ struct ContentView: View {
                     difficulty: $difficulty,
                     score: $score
                 )
+            } else if currentPage == .TriviaQuizView {
+                TriviaQuizView(questionVM: QuestionVM())
             }
         }
     }

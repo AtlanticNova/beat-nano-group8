@@ -29,7 +29,7 @@ struct MathQuizView: View {
                         answerIsCorrect(answer: choiceArray[index])
                         generateAnswer()
                     } label: {
-                        AnswerButton(number: choiceArray[index])
+//                        AnswerButton(number: choiceArray[index])
                     }
                 }
             }
@@ -40,7 +40,7 @@ struct MathQuizView: View {
                         answerIsCorrect(answer: choiceArray[index])
                         generateAnswer()
                     } label: {
-                        AnswerButton(number: choiceArray[index])
+//                        AnswerButton(number: choiceArray[index])
                     }
                 }
             }

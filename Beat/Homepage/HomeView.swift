@@ -40,7 +40,7 @@ struct HomeView: View {
             .padding(.bottom)
             
             Button(){
-                currentPage = .MathQuizView
+                currentPage = .TriviaQuizView
             } label: {
                 Capsule()
                     .fill(Color(red: 0.66, green: 0.18, blue: 0.29))
@@ -75,8 +75,8 @@ struct HomeView: View {
 //struct SwiftUIView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        HomeView(
-//            username: .constant("")
-////            currentPage: currentPage
+//            username: .constant(""),
+//            currentPage: currentPage
 //        )
 //    }
 //}
