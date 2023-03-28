@@ -20,12 +20,21 @@ struct Leaderboard: View {
     
             VStack{
                 HStack{
-                    Button(){print("back")
-                    } label: {
-                        Image("back button")
-                            .resizable()
+                    Button(action: {
+                        // Action to perform when the button is tapped
+                    }) {
+                        Text("Transparent Button")
+                            .foregroundColor(.clear)
                             .frame(width: 50, height: 50)
                     }
+                    .buttonStyle(.plain)
+//                    Button(){print("back")
+//                    } label: {
+//                        Image("back button")
+//                            .resizable()
+//                            .frame(width: 50, height: 50)
+//                            .foregroundColor(.clear)
+//                    }.buttonStyle(.plain)
                     Capsule()
                         .frame(maxWidth: 250, maxHeight: 50)
                         .foregroundColor(Color(red: 169/255, green: 47/255, blue: 75/255))
@@ -176,19 +185,37 @@ struct Leaderboard: View {
                                 }
                             
                                 VStack{
-                                    ForEach(players.indices, id: \.self) {index in
-                                        HStack {
-                                            Spacer(minLength: 1)
-                                            Text("\(index + 1)")
-                                            Spacer()
-                                            Text(players[index].name)
-                                            Spacer()
-                                            Text("\(players[index].score)")
-                                            Spacer()
+                                    if !players.isEmpty{
+                                        var playersTemp = players.prefix(8).dropFirst(3)
+                                        ForEach(playersTemp.indices, id: \.self) {index in
+                                            HStack {
+                                                Spacer(minLength: 1)
+                                                Text("\(index + 1)")
+                                                Spacer()
+                                                Text(playersTemp[index].name)
+                                                Spacer()
+                                                Text("\(playersTemp[index].score)")
+                                                Spacer()
+                                            }
+                                            .font(.custom("1UP!", size: 15))
+                                            .foregroundColor(.white)
+                                            .padding(5)
                                         }
-                                        .font(.custom("1UP!", size: 15))
-                                        .foregroundColor(.white)
-                                        .padding(5)
+                                    } else {
+                                        ForEach(players.indices, id: \.self) {index in
+                                            HStack {
+                                                Spacer(minLength: 1)
+                                                Text("\(index + 1)")
+                                                Spacer()
+                                                Text(players[index].name)
+                                                Spacer()
+                                                Text("\(players[index].score)")
+                                                Spacer()
+                                            }
+                                            .font(.custom("1UP!", size: 15))
+                                            .foregroundColor(.white)
+                                            .padding(5)
+                                        }
                                     }
                                 }
                         }

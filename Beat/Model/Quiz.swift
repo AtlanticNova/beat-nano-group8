@@ -11,7 +11,7 @@ import SwiftUI
 struct Quiz {
     var currentQuestionIndex: Int
     var quizModel: QuizModel
-    var quizCompleted: Bool
+    var quizCompleted: Bool = false
     var quizWinningStatus: Bool = false
 }
 

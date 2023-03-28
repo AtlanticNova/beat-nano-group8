@@ -40,7 +40,7 @@ struct HomeView: View {
                 )
                 .padding(.bottom)
                 
-                NavigationLink(destination: MathQuizView(correctAnswer: 0, choiceArray: [], firstNumber: 0, secondNumber: 0, difficulty: 0, score: 0, username: $username)) {
+                NavigationLink(destination: MathQuizView(correctAnswer: 0, choiceArray: [], firstNumber: 0, secondNumber: 0, answer: 0, questionLength: 0, difficulty: 0, score: 0,username: $username)) {
                     Capsule()
                         .fill(Color(red: 0.66, green: 0.18, blue: 0.29))
                         .frame(width: 300, height: 50)
